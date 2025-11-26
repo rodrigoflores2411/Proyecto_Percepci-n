@@ -45,26 +45,8 @@ pip install -r requirements.txt
 4. Estructura del Proyecto
 pgsql
 Copiar código
-Proyecto_Percep/
-│
-├── dataset/
-├── warehouse/
-├── logs/
-├── models/
-│   ├── lbph_model.xml
-│   └── labels.json
-│
-├── src/
-│   ├── config.py
-│   ├── metricas.py
-│   ├── spark_ingest.py
-│   ├── train_lbph.py
-│   ├── recognize_realtime.py
-│   └── spark_streaming_consumer.py
-│
-├── metricas_resultados.py
-├── requirements.txt
-└── README.md
+<img width="320" height="499" alt="image" src="https://github.com/user-attachments/assets/23614ed7-0dd6-4544-9086-e13cc10d3c98" />
+
 5. Ejecución del Pipeline
 5.1 Procesamiento Batch (Spark)
 bash
