@@ -12,62 +12,57 @@ def cargar_metricas():
     return df_train, df_cv
 
 def generar_graficos(df_train, df_cv):
-    plt.figure(figsize=(8,5))
-    accuracies = [df_train["accuracy"][0], df_cv["accuracy_mean"][0]]
-    labels = ["Train/Test (80/20)", "Cross-Validation (5-fold)"]
+    import matplotlib.pyplot as plt
 
-    plt.bar(labels, accuracies)
+    print("Generando gráficos...")
+
+    # -------------------------
+    # GRÁFICO 1: COMPARACIÓN ACCURACY
+    # -------------------------
+    acc_train = df_train["accuracy"].mean()
+    acc_cv = df_cv["accuracy"].mean()
+
+    plt.figure()
+    plt.bar(["Train/Test", "Cross-Validation"], [acc_train, acc_cv])
     plt.title("Comparación de Accuracy")
     plt.ylabel("Accuracy")
-    plt.ylim(0, 1.1)
-    plt.savefig("grafico_accuracy_comparacion.png")
-    plt.close()
+    plt.savefig("accuracy_comparacion.png")
+    print("[OK] accuracy_comparacion.png generado")
 
-    k = 5
-    latency_mean = df_cv["latency_mean"][0]
-    latency_std = df_cv["latency_std"][0]
-
-    latency_folds = np.random.normal(latency_mean, latency_std, k)
-
-    plt.figure(figsize=(8,5))
-    plt.plot(range(1, k+1), latency_folds, marker='o')
-    plt.title("Latencia por Fold (Cross-Validation)")
-    plt.xlabel("Fold")
+    # -------------------------
+    # GRÁFICO 2: CURVA LOSS / LATENCIA
+    # -------------------------
+    plt.figure()
+    plt.plot(df_train["latencia"], marker='o')
+    plt.title("Curva de Latencia por Fold (Train/Test)")
     plt.ylabel("Latencia (ms)")
-    plt.grid(True)
-    plt.savefig("grafico_latencia_folds.png")
-    plt.close()
+    plt.xlabel("Fold")
+    plt.savefig("curva_loss_accuracy.png")
+    print("[OK] curva_loss_accuracy.png generado")
 
-    fps_mean = df_cv["fps_mean"][0]
-    fps_std = df_cv["fps_std"][0]
-
-    fps_folds = np.random.normal(fps_mean, fps_std, k)
-
-    plt.figure(figsize=(8,5))
-    plt.plot(range(1, k+1), fps_folds, marker='o')
-    plt.title("FPS por Fold")
+    # -------------------------
+    # GRÁFICO 3: FPS por Fold
+    # -------------------------
+    plt.figure()
+    plt.bar(df_train["fold"], df_train["fps"])
+    plt.title("FPS por Fold (Train/Test)")
     plt.xlabel("Fold")
     plt.ylabel("FPS")
-    plt.grid(True)
-    plt.savefig("grafico_fps_folds.png")
-    plt.close()
+    plt.savefig("fps_folds.png")
+    print("[OK] fps_folds.png generado")
 
-
-
-
-    accuracy_folds = np.ones(k) 
-
-    plt.figure(figsize=(8,5))
-    plt.plot(range(1, k+1), accuracy_folds, marker='o', label="Accuracy")
-    plt.plot(range(1, k+1), latency_folds, marker='s', label="Latencia (ms)")
-    plt.title("Curva Tipo Loss/Accuracy para LBPH")
+    # -------------------------
+    # GRÁFICO 4: Latencia por Fold
+    # -------------------------
+    plt.figure()
+    plt.plot(df_train["fold"], df_train["latencia"], marker='o')
+    plt.title("Latencia por Fold (Train/Test)")
     plt.xlabel("Fold")
-    plt.ylabel("Valor")
-    plt.legend()
-    plt.grid(True)
-    plt.savefig("grafico_curva_loss_accuracy.png")
-    plt.close()
+    plt.ylabel("Latencia (ms)")
+    plt.savefig("latencia_folds.png")
+    print("[OK] latencia_folds.png generado")
 
+    print("Todos los gráficos han sido generados.")
 def main():
     print("Cargando métricas...")
     df_train, df_cv = cargar_metricas()
