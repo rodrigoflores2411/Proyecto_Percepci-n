@@ -1,0 +1,30 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Archivos de modelos pesados
+models/*.xml
+models/*.json
+
+# Logs autogenerados
+logs/
+*.csv
+*.parquet
+*.xlsx
+
+# Carpeta de Spark warehouse
+warehouse/
+
+# Compilados
+__pycache__/
+*.pyc
+
+# Videos e imágenes grandes
+*.mp4
+frames/
+dataset/
+
+# Configuraciones locales
+.idea/
+.vscode/
