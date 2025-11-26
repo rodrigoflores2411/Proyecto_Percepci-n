@@ -1,0 +1,27 @@
+# Virtual env
+.venv/
+env/
+venv/
+
+# Logs y autogenerados
+logs/
+warehouse/
+*.csv
+*.xlsx
+*.parquet
+
+# Modelos pesados
+models/
+!models/README.md  # (opcional para dejar una nota)
+
+# Dataset local
+dataset/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor/OS files
+.DS_Store
+Thumbs.db
