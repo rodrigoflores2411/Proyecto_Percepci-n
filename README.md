@@ -49,7 +49,7 @@ Windows CMD
 
 
 5. Ejecución del Pipeline
-   ---
+---
 
 5.1 Procesamiento Batch (Spark)
 
@@ -86,7 +86,9 @@ Genera:
    ---
    
 6.1 Iniciar Apache Kafka
+---
 ```bin/zookeeper-server-start.sh config/zookeeper.properties```
 ---
 6.2 Iniciar el Servidor de Kafka (Broker)
+---
    ```bin/kafka-server-start.sh config/server.properties```
